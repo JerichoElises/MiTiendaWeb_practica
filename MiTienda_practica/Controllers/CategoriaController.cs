@@ -1,23 +1,54 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using MiTienda_practica.Context;
-using MiTienda_practica.Entities;
 using MiTienda_practica.Models;
+using MiTienda_practica.Services;
 
 namespace MiTienda_practica.Controllers
 {
-    public class CategoriaController(AppDbContext _dbContext) : Controller
+    public class CategoriaController(CategoriaService _categoriaService) : Controller
     {
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            var categorias = _dbContext.Categorias.Select(item =>
-            new CategoriaVM
-            {
-                CategoriaId = item.CategoriaId,
-                Nombre = item.Nombre
-            }
-            ).ToList();
+            var categorias = await _categoriaService.GetAllAsync();
             return View(categorias);
         }
-            
+        [HttpGet]
+        public async Task<IActionResult> AddEdit(int id)
+        {
+            if (id == 0)
+            {
+                return View(new CategoriaVM());
+            }
+
+            var categoriaVM = await _categoriaService.GetByIdAsync(id);
+            return View(categoriaVM);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> AddEdit(CategoriaVM entityVM)
+        {
+            if (!ModelState.IsValid) return View(entityVM);
+
+            if (entityVM.CategoriaId == 0)
+            {
+                await _categoriaService.AddAsync(entityVM);
+                ViewBag.MensajeExito = "La categoría fue creada";
+                ModelState.Clear();
+                entityVM = new CategoriaVM();
+            }
+            else
+            {
+                await _categoriaService.EditAsync(entityVM);
+                ViewBag.MensajeExito = "La categoría fue actualizada";
+            }
+
+            return View(entityVM);
+        }
+
+        public async Task<IActionResult> Delete(int id)
+        {
+            await _categoriaService.DeleteAsync(id);
+            return RedirectToAction("Index");
+        }
+
     }
 }

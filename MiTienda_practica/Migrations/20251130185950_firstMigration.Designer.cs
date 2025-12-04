@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MiTienda_practica.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20251116174705_firstMigration")]
+    [Migration("20251130185950_firstMigration")]
     partial class firstMigration
     {
         /// <inheritdoc />
