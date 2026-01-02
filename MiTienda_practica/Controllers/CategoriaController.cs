@@ -26,6 +26,8 @@ namespace MiTienda_practica.Controllers
         [HttpPost]
         public async Task<IActionResult> AddEdit(CategoriaVM entityVM)
         {
+            ViewBag.MensajeExito = null;
+
             if (!ModelState.IsValid) return View(entityVM);
 
             if (entityVM.CategoriaId == 0)

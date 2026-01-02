@@ -1,5 +1,6 @@
 ﻿using MiTienda_practica.Context;
 using Microsoft.EntityFrameworkCore;
+using System.Linq.Expressions;
 
 namespace MiTienda_practica.Repositories
 
@@ -9,6 +10,22 @@ namespace MiTienda_practica.Repositories
         public async Task<IEnumerable<TEntity>> GetAllAsync()
         {
            return await _dbContext.Set<TEntity>().ToListAsync();
+        }
+
+        public async Task<IEnumerable<TEntity>> GetAllAsync(
+            Expression<Func<TEntity, bool>>[] conditions = null,
+            Expression<Func<TEntity, object>>[] includes = null
+            )
+        {
+           IQueryable<TEntity> query = _dbContext.Set<TEntity>();
+
+            if(conditions is not null)
+                foreach (var condition in conditions) query = query.Where(condition);
+
+            if (includes is not null)
+                foreach (var include in includes) query = query.Include(include);
+
+            return await query.ToListAsync();
         }
 
         public async Task AddAsync(TEntity entity)

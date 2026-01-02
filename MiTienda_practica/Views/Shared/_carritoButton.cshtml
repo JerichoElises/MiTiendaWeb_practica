@@ -1,0 +1,21 @@
+﻿@using MiTienda_practica.Utilities;
+
+@{
+    int carritoCount = 0;
+    if(Context.Session.Get<List<ArticuloCarritoVM>>("Carrito")!= null)
+    {
+        var carrito = Context.Session.Get<List<ArticuloCarritoVM>>("Carrito");
+        carritoCount = carrito.Count;
+    }
+}
+
+<li class="nav-item ms-auto">
+    <a class="btn btn-outline-dark" href="#">
+        <i class="fa-solid fa-cart-shopping"></i>
+        Carrito
+        <span class="badge bg-dark text-white ms-1 rounded-pill">
+            @carritoCount
+        </span>
+    </a>
+</li>
+
