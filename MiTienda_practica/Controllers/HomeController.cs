@@ -1,6 +1,7 @@
 using System.Buffers;
 using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Build.Experimental.ProjectCache;
 using MiTienda_practica.Models;
 using MiTienda_practica.Services;
 using MiTienda_practica.Utilities;
@@ -91,6 +92,23 @@ namespace MiTienda_practica.Controllers
             ViewBag.message = "Producto agregado al carrito exitosamente.";
             return View("ProductoDetalle", producto);
         }
+
+        public IActionResult VerCarrito()
+        {             
+            var carrito = HttpContext.Session.Get<List<ArticuloCarritoVM>>("Carrito") ?? new List<ArticuloCarritoVM>();
+            return View(carrito);
+        }
+
+        public IActionResult QuitarArticuloCarrito(int productoId)
+        {
+            var carrito = HttpContext.Session.Get<List<ArticuloCarritoVM>>("Carrito");
+
+            var producto = carrito.Find(x => x.ProductId == productoId);
+            carrito.Remove(producto!);
+            HttpContext.Session.Set("Carrito", carrito);
+            return View("VerCarrito",carrito);
+        }
+
 
 
         public IActionResult Privacy()
