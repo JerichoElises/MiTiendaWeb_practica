@@ -10,7 +10,7 @@ namespace MiTienda_practica.Entities
         public decimal TotalMonto { get; set; }
 
         public Usuario? Usuario { get; set; }
-        public Collection<ArticuloPedido> ArticuloPedidos { get; set; }
+        public ICollection<ArticuloPedido> ArticuloPedidos { get; set; }
 
         
     }

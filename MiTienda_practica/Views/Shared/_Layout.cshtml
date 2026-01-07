@@ -36,6 +36,17 @@
 
                         @await Html.PartialAsync("_carritoButton")
                         
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Dropdown
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item text-dark" href="/Usuario/MisOrdenes">Mis ordenes</a></li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li><a class="dropdown-item text-dark" href="#">Cerrar sesión</a></li>
+                            </ul>
+                        </li>
+
                     </ul>
                 </div>
             </div>

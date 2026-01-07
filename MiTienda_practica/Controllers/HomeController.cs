@@ -10,7 +10,8 @@ namespace MiTienda_practica.Controllers
 {
     public class HomeController(
         CategoriaService _categoriaService,
-        ProductoService _productoService
+        ProductoService _productoService,
+        OrdenService _ordenService
         ) : Controller
     {
 
@@ -111,7 +112,21 @@ namespace MiTienda_practica.Controllers
 
 
 
-        public IActionResult Privacy()
+        [HttpPost]
+        public async Task<IActionResult> PagarAhora()
+        { 
+            var carrito = HttpContext.Session.Get<List<ArticuloCarritoVM>>("Carrito");
+            int userId = 1;
+
+            await _ordenService.AddAsync(carrito, userId);
+
+            HttpContext.Session.Remove("Carrito");
+
+            return View("PagoExitoso");
+        }
+
+
+        public IActionResult PagoExitoso()
         {
             return View();
         }

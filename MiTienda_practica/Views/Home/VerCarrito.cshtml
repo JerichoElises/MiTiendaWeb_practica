@@ -63,55 +63,59 @@ else
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
-            <div class="modal-header">
-                <h1 class="modal-title fs-5" id="exampleModalLabel">Formulario de Pago</h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
+            <form action="/Home/PagarAhora" method="post">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Formulario de Pago</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
                 <div class="modal-body">
-                    <div class="row g-3">
-                        <div class="col-12">
-                            <input type="email" class="form-control" placeholder="Correo Electrónico" />
-                        </div>
-                        <div class="col-12">
-                            <input type="text" class="form-control" placeholder="Dirección" />
-                        </div>
-                        <div class="col-6">
-                            <input type="email" class="form-control" placeholder="País" />
-                        </div>
-                        <div class="col-6">
-                            <input type="text" class="form-control" placeholder="Ciudad" />
-                        </div>
+                    <div class="modal-body">
+                        <div class="row g-3">
+                            <div class="col-12">
+                                <input type="email" class="form-control" placeholder="Correo Electrónico" />
+                            </div>
+                            <div class="col-12">
+                                <input type="text" class="form-control" placeholder="Dirección" />
+                            </div>
+                            <div class="col-6">
+                                <input type="email" class="form-control" placeholder="País" />
+                            </div>
+                            <div class="col-6">
+                                <input type="text" class="form-control" placeholder="Ciudad" />
+                            </div>
 
-                        <hr />
+                            <hr />
 
-                        <div class="col-12">
-                            <input type="text" class="form-control" placeholder="Nombre de la tarjeta" />
-                        </div>
+                            <div class="col-12">
+                                <input type="text" class="form-control" placeholder="Nombre de la tarjeta" />
+                            </div>
 
-                        <div class="col-12">
-                            <input type="text" class="form-control" placeholder="Número de la tarjeta" />
-                        </div>
+                            <div class="col-12">
+                                <input type="text" class="form-control" placeholder="Número de la tarjeta" />
+                            </div>
 
-                        <div class="col-3">
-                            <input type="number" class="form-control" placeholder="MM" />
-                        </div>
-                        <div class="col-3">
-                            <input type="number" class="form-control" placeholder="AAAA" />
-                        </div>
-                        <div class="col-6">
-                            <input type="number" class="form-control" placeholder="CVV" />
+                            <div class="col-3">
+                                <input type="number" class="form-control" placeholder="MM" />
+                            </div>
+                            <div class="col-3">
+                                <input type="number" class="form-control" placeholder="AAAA" />
+                            </div>
+                            <div class="col-6">
+                                <input type="number" class="form-control" placeholder="CVV" />
+                            </div>
                         </div>
                     </div>
+
+
+
                 </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                    <button type="submit" class="btn btn-primary">Pagar ahora</button>
+                </div>
+            </form>
 
-
-
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                <button type="button" class="btn btn-primary">Pagar ahora</button>
-            </div>
+            
         </div>
     </div>
 </div>

@@ -14,8 +14,10 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 });
 
 builder.Services.AddScoped(typeof(GenericRepository<>));
+builder.Services.AddScoped<OrdenRepository>();
 builder.Services.AddScoped<CategoriaService>();
 builder.Services.AddScoped<ProductoService>();
+builder.Services.AddScoped<OrdenService>();
 
 builder.Services.AddDistributedMemoryCache();
 

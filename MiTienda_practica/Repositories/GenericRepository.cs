@@ -28,7 +28,7 @@ namespace MiTienda_practica.Repositories
             return await query.ToListAsync();
         }
 
-        public async Task AddAsync(TEntity entity)
+        public virtual async Task AddAsync(TEntity entity)
         {
             await _dbContext.Set<TEntity>().AddAsync(entity);
             await _dbContext.SaveChangesAsync();

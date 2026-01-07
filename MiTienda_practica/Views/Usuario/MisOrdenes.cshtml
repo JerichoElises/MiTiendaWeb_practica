@@ -1,0 +1,41 @@
+﻿@model List<OrdenVM>
+
+<div class="row justify-content-between mt-4">
+    <div class="col-4">
+        <h4>Mis Ordenes</h4>
+    </div>
+    <div class="col-4 text-end">
+        <a href="/Categoria/AddEdit" class="btn btn-success"><i class="fa-solid fa-square-plus"></i> Crear Nuevo</a>
+    </div>
+</div>
+
+<hr />
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Fecha de la orden</th>
+            <th>Monto Total</th>
+            <th>Articulos de la orden</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.FechaOrden</td>
+                <td>@item.MontoTotal</td>
+                <td>
+                    <ol class="list-group list-group-numbered">
+                        @foreach (var element in item.ordenArticulos)
+                        {
+                          <li class="list-group-item">
+                              @(element.NombreArticulo + "+" + element.Quantity +"x"+element.Precio)
+                          </li>  
+                        }
+                    </ol>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
