@@ -1,3 +1,5 @@
+using Microsoft.AspNetCore.Authentication.Cookies;
+
 using Microsoft.EntityFrameworkCore;
 using MiTienda_practica.Context;
 using MiTienda_practica.Repositories;
@@ -18,6 +20,7 @@ builder.Services.AddScoped<OrdenRepository>();
 builder.Services.AddScoped<CategoriaService>();
 builder.Services.AddScoped<ProductoService>();
 builder.Services.AddScoped<OrdenService>();
+builder.Services.AddScoped<UsuarioService>();
 
 builder.Services.AddDistributedMemoryCache();
 
@@ -28,6 +31,14 @@ builder.Services.AddSession(options =>
     options.Cookie.IsEssential = true;
 });
 
+builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+    .AddCookie(options =>
+    {
+        options.LoginPath = "/Cuenta/Login";
+        options.ExpireTimeSpan = TimeSpan.FromMinutes(30);
+        //options.LogoutPath = "/Usuario/Logout";
+        //options.AccessDeniedPath = "/Usuario/AccessDenied";
+    });
 
 var app = builder.Build();
 

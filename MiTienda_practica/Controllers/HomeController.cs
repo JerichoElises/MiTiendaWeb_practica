@@ -5,6 +5,7 @@ using Microsoft.Build.Experimental.ProjectCache;
 using MiTienda_practica.Models;
 using MiTienda_practica.Services;
 using MiTienda_practica.Utilities;
+using System.Security.Claims;
 
 namespace MiTienda_practica.Controllers
 {
@@ -116,9 +117,9 @@ namespace MiTienda_practica.Controllers
         public async Task<IActionResult> PagarAhora()
         { 
             var carrito = HttpContext.Session.Get<List<ArticuloCarritoVM>>("Carrito");
-            int userId = 1;
 
-            await _ordenService.AddAsync(carrito, userId);
+            var userId = HttpContext.User.FindFirst(ClaimTypes.NameIdentifier)!.Value;
+            await _ordenService.AddAsync(carrito,int.Parse(userId));
 
             HttpContext.Session.Remove("Carrito");
 

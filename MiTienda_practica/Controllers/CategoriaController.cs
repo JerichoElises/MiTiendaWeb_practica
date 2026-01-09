@@ -1,11 +1,14 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using MiTienda_practica.Models;
 using MiTienda_practica.Services;
 
 namespace MiTienda_practica.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class CategoriaController(CategoriaService _categoriaService) : Controller
     {
+       
         public async Task<IActionResult> Index()
         {
             var categorias = await _categoriaService.GetAllAsync();

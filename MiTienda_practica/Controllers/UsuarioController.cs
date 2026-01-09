@@ -1,15 +1,18 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using MiTienda_practica.Services;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
+using System.Security.Claims;
 
 namespace MiTienda_practica.Controllers
 {
+    [Authorize]
     public class UsuarioController(OrdenService _ordenService) : Controller
     {
         public async Task<IActionResult> MisOrdenes()
         {
-            var usuarioId = 1; // Simulación de usuario autenticado con ID 1
-            var ordenesvm = await _ordenService.GetAllByUserAsync(usuarioId);
+            var usuarioId = HttpContext.User.FindFirst(ClaimTypes.NameIdentifier)!.Value; 
+            var ordenesvm = await _ordenService.GetAllByUserAsync(int.Parse(usuarioId));
             return View(ordenesvm);
         }
     }

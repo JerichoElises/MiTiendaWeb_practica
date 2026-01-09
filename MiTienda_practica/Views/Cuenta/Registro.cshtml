@@ -1,0 +1,66 @@
+﻿@model UsuarioVM
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <title>@ViewData["Title"] - MiTienda_Practica</title>
+</head>
+<body class="bg-body-secondary">
+    <div class="row justify-content-center align-items-center vh-100">
+
+        <div class="col-md-6 col-lg-4">
+            <div class="card-show">
+                <div class="card-body p-4">
+                    <h2 class="card-title text-center mb-4">Registrarse</h2>
+                    <form action="/Cuenta/Registro" method="post">
+                        <div class="mb-3">
+                            <label class="form-label">Nombre completo</label>
+                            <input class="form-control" type="text" asp-for="NombreCompleto" />
+                            <span asp-validation-for="NombreCompleto" class="text-danger"></span>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Correo</label>
+                            <input class="form-control" type="email" asp-for="Correo" />
+                            <span asp-validation-for="Correo" class="text-danger"></span>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Contraseña</label>
+                            <input class="form-control" type="password" asp-for="Contrasena" />
+                            <span asp-validation-for="Contrasena" class="text-danger"></span>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Repite Contraseña</label>
+                            <input class="form-control" type="password" asp-for="RepiteContrasena" />
+                            <span asp-validation-for="RepiteContrasena" class="text-danger"></span>
+                        </div>
+                         <input type="hidden" asp-for="Rol" value="Cliente" />
+
+                        @if (ViewBag.MensajeExito != null)
+                        {
+                            <div class="alert @ViewBag.Class" role="alert">
+                                @ViewBag.MensajeExito
+                            </div>
+                        }
+
+                        <div class="d-grid gap-2">
+                            <button class="btn btn-primary" type="submit">Registrarse</button>
+                            <a href="/Cuenta/Login" class="btn btn-outline-secondary">Volver</a>
+                        </div>
+
+                    </form>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+</body>
+</html>

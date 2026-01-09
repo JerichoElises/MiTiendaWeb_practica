@@ -1,10 +1,12 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using MiTienda_practica.Models;
 using MiTienda_practica.Services;
 
 namespace MiTienda_practica.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class ProductoController(ProductoService _productoService) : Controller
 
     {
